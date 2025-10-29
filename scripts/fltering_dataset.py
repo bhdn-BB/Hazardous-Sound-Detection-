@@ -15,10 +15,9 @@ def fiter_dataset(
     )
     dataframe.dropna(subset=dataframe.columns, inplace=True)
     loader_dividing = tqdm(labels_item)
+    mask = pd.Series(False, index=dataframe.index)
     for label_name, mid in loader_dividing:
-        dataframe = dataframe[
-            dataframe["positive_labels"].str.contains(
-                mid, regex=False, na=False
-            )
-        ]
-    return dataframe
+        mask |= dataframe["positive_labels"].str.contains(
+            mid, regex=False, na=False
+        )
+    return dataframe[mask]

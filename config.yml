@@ -1,4 +1,12 @@
-datasets:
 
+datasets:
   audio_set:
     train: "http://storage.googleapis.com/us_audioset/youtube_corpus/v1/csv/balanced_train_segments.csv"
+
+labels:
+  siren: "/m/07rwj"
+  air_raid_siren: "/m/01hsr_"
+  alarm: "/m/0c3f7m"
+  explosion: "/m/0k4j"
+  gunshot: "/m/03_1v"
+  emergency_vehicle: "/m/04zjc"

@@ -1,0 +1,4 @@
+datasets:
+
+  audio_set:
+    train: "http://storage.googleapis.com/us_audioset/youtube_corpus/v1/csv/balanced_train_segments.csv"

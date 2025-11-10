@@ -106,7 +106,6 @@ class AudioDataset(torch.utils.data.Dataset):
         return y_mix if not self.mixup_params.get("hard_target", True) else (y_mix > 0).astype(float)
 
     def _prepare_sample(self, idx: int):
-        # беремо сигнал
         if self.use_cache:
             wave = self.df["wave"].iloc[idx]
             if wave is None:

@@ -1,4 +1,3 @@
-import time
 import lightning
 
 
@@ -15,7 +14,7 @@ class LitTrainer(lightning.LightningModule):
         metric_output_key,
         val_metrics,
         train_metrics,
-    ):
+    ) -> None:
         super().__init__()
 
         self.model = model
@@ -37,9 +36,7 @@ class LitTrainer(lightning.LightningModule):
         return united
 
     def training_step(self, batch):
-        start_time = time.time()
         losses, inputs, outputs = self._forward(self, batch, epoch=self.current_epoch)
-        model_time = time.time() - start_time
 
         for k, v in losses.items():
             self.log(
@@ -64,7 +61,6 @@ class LitTrainer(lightning.LightningModule):
             )
         self.log(
             "train/model_time",
-            model_time,
             on_step=True,
             on_epoch=False,
             prog_bar=True,
@@ -74,7 +70,6 @@ class LitTrainer(lightning.LightningModule):
         )
         self.log(
             "train/avg_model_time",
-            model_time,
             on_step=False,
             on_epoch=True,
             prog_bar=True,
@@ -85,9 +80,7 @@ class LitTrainer(lightning.LightningModule):
         return self._aggregate_outputs(losses, inputs, outputs)
 
     def validation_step(self, batch, batch_idx):
-        start_time = time.time()
         losses, inputs, outputs = self._forward(self, batch, epoch=self.current_epoch)
-        model_time = time.time() - start_time
 
         if self._val_metrics is not None:
             self._val_metrics.update(
@@ -118,7 +111,6 @@ class LitTrainer(lightning.LightningModule):
             )
         self.log(
             "valid/model_time",
-            model_time,
             on_step=True,
             on_epoch=False,
             prog_bar=True,
@@ -128,7 +120,6 @@ class LitTrainer(lightning.LightningModule):
         )
         self.log(
             "valid/avg_model_time",
-            model_time,
             on_step=False,
             on_epoch=True,
             prog_bar=True,

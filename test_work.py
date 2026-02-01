@@ -14,7 +14,7 @@ RECORD_SECONDS = 5
 LABELS = ['siren', 'gunshot', 'explosion', 'casual']
 label2id = {label: i for i, label in enumerate(LABELS)}
 AST_MODEL_NAME = "MIT/ast-finetuned-audioset-10-10-0.4593"
-AST_MODEL_WEIGHT = 'D:\\audio_cls_coursework\\weights\AST\\model.safetensors'
+AST_MODEL_WEIGHT = '...'
 NUM_LABELS = 4
 
 
